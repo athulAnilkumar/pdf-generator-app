@@ -1,0 +1,14 @@
+<h2>LOGIN</h2>
+<input
+  type="text"
+  [value]="username()"
+  placeholder="username"
+  (change)="onValueChange($event, 'username')"
+/>
+<input
+  type="'password"
+  [value]="password()"
+  placeholder="password"
+  (change)="onValueChange($event, 'password')"
+/>
+<button (click)="onLogin()">Login</button>
