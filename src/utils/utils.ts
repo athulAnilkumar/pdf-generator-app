@@ -1,5 +1,5 @@
 import jsPDF from 'jspdf';
-import mammoth from 'mammoth';
+// import mammoth from 'mammoth';
 
 export const generatePDF = async (imageFiles: any) => {
   const pdf = new jsPDF();
