@@ -1,2 +1,8 @@
-<input type="text" id="videoUrl" placeholder="Enter YouTube URL" />
+<input
+  type="text"
+  id="videoUrl"
+  placeholder="Enter YouTube URL"
+  (change)="onLinkChange($event)"
+  [value]="link"
+/>
 <button (click)="downloadClick()">Download</button>
