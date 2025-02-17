@@ -80,3 +80,55 @@ export const convertDocxToPDF = async (file: any) => {
   // reader.readAsArrayBuffer(file);
   return null;
 };
+
+// export function downloadYouTubeVideo() {
+//   const videoElement = document.getElementById('videoUrl');
+//   if (!videoElement) {
+//     alert('Video URL element not found');
+//     return;
+//   }
+//   const videoURL: any = (videoElement as HTMLInputElement).value;
+//   if (!videoURL) {
+//     alert('Please enter a YouTube URL');
+//     return;
+//   }
+//   window.location.href = `http://localhost:3001/download?url=${encodeURIComponent(
+//     videoURL
+//   )}`;
+// }
+
+export async function downloadYouTubeVideo() {
+  const videoElement = document.getElementById('videoUrl');
+  if (!videoElement) {
+    alert('Video URL input not found');
+    return;
+  }
+
+  const videoURL = (videoElement as HTMLInputElement).value;
+  if (!videoURL) {
+    alert('Please enter a YouTube URL');
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      `http://localhost:3001/download?url=${encodeURIComponent(videoURL)}`
+    );
+    if (!response.ok) {
+      throw new Error('Failed to download video');
+    }
+
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'video.mp4'; // Default filename (can be customized)
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Failed to download video');
+  }
+}
