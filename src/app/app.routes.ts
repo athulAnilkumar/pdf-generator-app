@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { IndexPageComponent } from '../components/index-page/index-page.component';
 import { LoginComponent } from '../components/login/login.component';
 import { authGuard } from '../auth.guard';
+import { MainIndexComponent } from '../components/main-index/main-index.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
-  { path: 'index', component: IndexPageComponent, canActivate: [authGuard] },
+  { path: 'index', component: MainIndexComponent, canActivate: [authGuard] },
 ];

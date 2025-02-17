@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
   };
 
   onLogin = () => {
-    console.log(this.usern, this.pass);
     if (this.username() === this.usern && this.password() === this.pass) {
       localStorage.setItem('token', 'thisIsMyTOKEN');
       this.router.navigate(['/index']);
