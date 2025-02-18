@@ -54,7 +54,7 @@
       Reset Uploaded Images
     </button>
 
-    @if (imageBase64List.length) {
+    @if (imageBase64List().length) {
     <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px">
       @for (image of imageBase64List(); track image) {
       <div style="border-radius: 5px; overflow: hidden">
