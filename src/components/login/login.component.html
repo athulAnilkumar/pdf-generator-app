@@ -1,14 +1,52 @@
-<h2>LOGIN</h2>
-<input
-  type="text"
-  [value]="username()"
-  placeholder="username"
-  (change)="onValueChange($event, 'username')"
-/>
-<input
-  type="'password"
-  [value]="password()"
-  placeholder="password"
-  (change)="onValueChange($event, 'password')"
-/>
-<button (click)="onLogin()">Login</button>
+<h2 style="text-align: center; color: #333">LOGIN</h2>
+
+<div
+  style="
+    max-width: 300px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  "
+>
+  <input
+    type="text"
+    [value]="username()"
+    placeholder="Username"
+    (input)="onValueChange($event, 'username')"
+    style="
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    "
+  />
+
+  <input
+    type="password"
+    [value]="password()"
+    placeholder="Password"
+    (input)="onValueChange($event, 'password')"
+    style="
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    "
+  />
+
+  <button
+    (click)="onLogin()"
+    style="
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      background: #007bff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    "
+  >
+    Login
+  </button>
+</div>
