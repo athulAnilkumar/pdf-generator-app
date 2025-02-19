@@ -101,6 +101,7 @@ export async function downloadYouTubeVideo() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          origin: 'https://yt-downloader-50sv.onrender.com',
         },
         body: JSON.stringify({ url: videoURL }),
       }
