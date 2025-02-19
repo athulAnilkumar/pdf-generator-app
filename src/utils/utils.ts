@@ -81,22 +81,6 @@ export const convertDocxToPDF = async (file: any) => {
   return null;
 };
 
-// export function downloadYouTubeVideo() {
-//   const videoElement = document.getElementById('videoUrl');
-//   if (!videoElement) {
-//     alert('Video URL element not found');
-//     return;
-//   }
-//   const videoURL: any = (videoElement as HTMLInputElement).value;
-//   if (!videoURL) {
-//     alert('Please enter a YouTube URL');
-//     return;
-//   }
-//   window.location.href = `http://localhost:3001/download?url=${encodeURIComponent(
-//     videoURL
-//   )}`;
-// }
-
 export async function downloadYouTubeVideo() {
   const videoElement = document.getElementById('videoUrl');
   if (!videoElement) {
@@ -112,8 +96,16 @@ export async function downloadYouTubeVideo() {
 
   try {
     const response = await fetch(
-      `http://localhost:3001/download?url=${encodeURIComponent(videoURL)}`
+      'https://yt-downloader-api-50sv.onrender.com/download',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ url: videoURL }),
+      }
     );
+
     if (!response.ok) {
       throw new Error('Failed to download video');
     }
@@ -122,7 +114,7 @@ export async function downloadYouTubeVideo() {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'video.mp4'; // Default filename (can be customized)
+    a.download = 'video_download.mp4';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
