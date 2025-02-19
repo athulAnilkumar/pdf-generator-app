@@ -103,8 +103,12 @@ export async function downloadYouTubeVideo() {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
           // origin: 'https://yt-downloader-50sv.onrender.com',
+          // 'User-Agent':
+          //   'Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Mobile Safari/537.36',
+          // Referer: 'https://m.youtube.com/',
+          // 'Accept-Language': 'en-US,en;q=0.9',
         },
-        body: JSON.stringify({ url: videoURL }),
+        body: JSON.stringify({ videoUrl: videoURL }),
       }
     );
 
