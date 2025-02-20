@@ -2,15 +2,19 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { environment } from '../../environment/environment';
+import { LoginService } from '../login.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
   imports: [],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
+  providers: [HttpClient],
 })
 export class LoginComponent implements OnInit {
   router = inject(Router);
+  loginService = inject(LoginService);
 
   ngOnInit() {
     localStorage.setItem('token', '');
@@ -31,9 +35,17 @@ export class LoginComponent implements OnInit {
   };
 
   onLogin = () => {
-    if (this.username() === this.usern && this.password() === this.pass) {
-      localStorage.setItem('token', 'thisIsMyTOKEN');
-      this.router.navigate(['/index']);
-    }
+    // if (this.username() === this.usern && this.password() === this.pass) {
+    //   localStorage.setItem('token', 'thisIsMyTOKEN');
+    //   this.router.navigate(['/index']);
+    // }
+    this.loginService
+      .login({ username: this.username(), password: this.password() })
+      .subscribe((res: any) => {
+        if (res.status === true) {
+          localStorage.setItem('token', res.token);
+          this.router.navigateByUrl('/index');
+        }
+      });
   };
 }

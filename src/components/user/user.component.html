@@ -1,0 +1,14 @@
+<h1>Sign Up</h1>
+
+<label>Email</label>
+<input type="'text" (change)="onValueChange($event, 'email')" />
+
+<label>Ph no</label>
+<input type="'text" (change)="onValueChange($event, 'phone')" />
+
+<label>Create a Password</label>
+<input type="'password" (change)="onValueChange($event, 'password')" />
+
+<button (click)="onSignUp()">Sign Up</button>
+
+<button (click)="alreadyHaveAnAccount()">Already Have An Account</button>
