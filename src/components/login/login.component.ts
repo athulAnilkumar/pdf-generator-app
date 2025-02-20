@@ -1,7 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { environment } from '../../environment/environment';
 import { LoginService } from '../login.service';
 import { HttpClient } from '@angular/common/http';
 
@@ -23,9 +22,6 @@ export class LoginComponent implements OnInit {
   username = signal<string>('');
   password = signal<string>('');
 
-  usern = 'athul';
-  pass = 'athul';
-
   onValueChange = (event: any, type: string) => {
     if (type === 'username') {
       this.username.set(event.target.value);
@@ -35,16 +31,14 @@ export class LoginComponent implements OnInit {
   };
 
   onLogin = () => {
-    // if (this.username() === this.usern && this.password() === this.pass) {
-    //   localStorage.setItem('token', 'thisIsMyTOKEN');
-    //   this.router.navigate(['/index']);
-    // }
     this.loginService
       .login({ username: this.username(), password: this.password() })
       .subscribe((res: any) => {
         if (res.status === true) {
           localStorage.setItem('token', res.token);
           this.router.navigateByUrl('/index');
+        } else {
+          alert('Invalid Credentials');
         }
       });
   };

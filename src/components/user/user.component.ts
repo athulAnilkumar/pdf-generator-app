@@ -26,7 +26,7 @@ export class UserComponent {
   };
 
   onSignUp = () => {
-    this.loginService.saveUserData([this.data()]).subscribe((res: any) => {
+    this.loginService.saveUserData(this.data()).subscribe((res: any) => {
       if (res) {
         this.router.navigate(['/login']);
       }
