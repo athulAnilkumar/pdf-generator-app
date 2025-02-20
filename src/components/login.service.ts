@@ -8,18 +8,20 @@ import { Observable } from 'rxjs';
 export class LoginService {
   constructor(private http: HttpClient) {}
 
+  mainUrl = 'https://yt-downloader-api-50sv.onrender.com';
+
   saveUserData(data: any): Observable<any> {
-    return this.http.post('http://localhost:3001/saveUserData', {
+    return this.http.post(`${this.mainUrl}/saveUserData`, {
       data: data,
     });
   }
 
   getUserData(): Observable<any> {
-    return this.http.post('http://localhost:3001/getUserData', {});
+    return this.http.post(`${this.mainUrl}/getUserData`, {});
   }
 
   login(data: any): Observable<any> {
-    return this.http.post('http://localhost:3001/login', {
+    return this.http.post(`${this.mainUrl}/login`, {
       data: data,
     });
   }
